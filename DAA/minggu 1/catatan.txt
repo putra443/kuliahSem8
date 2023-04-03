@@ -1,0 +1,62 @@
+Materi Graph. (vertices & edge)
+
+graph simple : tidak loop atau tidak pararel
+pararel : 2 garis yang menhubungkan 2 vertices yg sama
+loop : 1 garis yang muter ke vertices yg sama
+
+degree :  jumlah edge yang bersinggungan dengan 1 vertices
+
+walk : sequential antara sisi dan vertex dimana sisi hanya muncul sekali (s1,v1,s2,v2, dst)
+
+closed walk : mulai jalan dan selesai di vertex yang sama
+
+open walk : mulai jalan dan selesai di vertex yang berbeda.
+
+path : open walk yang tidak ada vertex muncul lebih dari satu kali.
+
+circuit : closed walk yang tidak ada vertex yang muncul 2x kecuali vertex starting dan ending (karena pasti sama)
+
+Connected Graph : pasti punya 1 path di setap pasang vertex di graph tersebut
+
+Disconnected Graph : ada 2 pasang vertex yang tidak ada garisnya (kaya terbagi menjadi 2 komponen)
+
+Euler line :  closed walk yang hanya melewati setiap sisi tepat sekali.
+
+Euler Graph :  graph yang mengandung euler line.
+		:  syaratnya setiap vertex memiliki derajat pasti genap.
+
+Hamiltonian Circuit : connected graph yang setiap vertex hanya boleh dilewati 1 kali tapi sisinya bebas berapa kali.
+			  : klo sisinya dicabut 1 jadi hamilton path.
+
+* biasanya vertex menyatakan state, sisi menyatakan transisi yang mungkin terjadi dari vertex asal.
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Pertemuan 2 minggu 1
+weighted graph : edge bisa punya bobot, vertices juga bisa punya tapi jarang. (example problemnya mencari hamilton graph dengan jarak tempuhs terkecil)
+
+Directed Graph : sisi pada graph bisa memiliki arah, ada 2 kemungkinan, keluar atau masuk ke suatu vertex.
+		   : sisi yang keluar disebut d pangkat + (V) sedangkan untuk masuk yaitu d pangkat - (v)
+
+Euler directed graph : syaratnya setiap degree dari suatu vertex harus genap dan jumlah d+(v) dengan d-(v) harus sama.
+
+Tree : sebuah connected graph tanpa circuit dan self-loop / parallel edges.
+
+Properti Pohon : * hanya ada 1 path disetiap pasangan vertex didalam tree.
+		     * jika pohon memiliki n vertex maka ia memiliki n-1 sisi
+		     * sebuah connected graph dengan n vertex dan n-1 sisi adalah sebuah pohon.
+
+Spanning tree : sebuah pohon T disebut sebagai spanning tree dari connected graph G jika T adalah sub-graph dari G dan T mengandung SEMUA vertex dari G
+		    * minimal spanning tree adalah spanning tree dari suatu connected graph G yang memiliki total bobot sisi paling kecil.
+		    *  disconnected graph tidak memiliki spanning tree. namun jika dapat ditemukan tree disetiap komponen didapatkan tree maka bisa disebut sebagai spanning forest.
+		    * sisi di spanning tree disebut branch dari T.
+		    * sisi yang tidak di pakai di spanning tree disebut chord (bisa didapatkan di graph awal)
+		    * spanning tree T dari G dengan n vertex dan e sisi, pasti memiliki n-1 brancehes dan e-n+1 chords
+
+Rooted tree :  pohon yang memiliki 1 simpul yang menjadi akar. leaf merupakan vertex paling bawah yg gapunya anak. sisanya selain root dan leaf disebut internal node
+		 * kedalaman pohon merupakan jarak leaf paling jauh dari root.
+
+graph dan tree traversal :  intinya ingin mengunjungi setiap vertex tepat 1x, ada kemungkinan ada sisi yang tidak dijalanin. dengan membuat graph traversal maka akan menghasilkan traversal rooted tree dan di connected graph akan menghasilkan spanning tree.
+			
+			
+DFS intinya harus menjauh dari root dengan mengunjungi setiap vertex.
+BFS intinya bergerak ke setiap level dari tree (tidak menjauh dari root) dengan mengunjungi setiap vertex.

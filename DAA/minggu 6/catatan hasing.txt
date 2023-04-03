@@ -1,0 +1,15 @@
+Hashing
+
+-. motivasi : bagaimana cara terbaik untuk menyimpan data. Dilihat dari kompleksitas penyimpanan dan pencarian data tsb.
+
+
+
+
+Hashing : mengasosiasikan kunci dengan nilai.
+
+
+Direct Addressing : jika keynya kecil dan semuanya unique, maka bisa bikin tablel sebesar universenya (masalahnya datanya bisa banyak banget jadi tidak bisa pake direct addressing)
+
+
+Solusi : pake besar tabel dengan banyaknya data yg mau disimpan
+

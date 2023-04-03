@@ -1,0 +1,12 @@
+POHON
+
+pohon -> graph yang tidak memiliki cycle.
+*pohon tidak disimpan sebagai matrix karena tidak bisa dilihat child parentnya;
+
+
+recursive definition -> a tree is either :  an empty tree (tidak ada vertex) atau 1 root dengan zero or more tree children.
+*maka dari itu penyimpanan pohon menggunakan linked list.
+
+*pohon biasa disebut n-ary tree (setiap node tidak memiliki anak lebih dari n-anak). binary tree nama lainnya 2-ary tree.
+
+

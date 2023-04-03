@@ -1,0 +1,10 @@
+Algoritma graph
+
+adjacency graph : merepresentasikan graph sebagai matrix n x n dengan isinya nilai boolean, n yaitu banyaknya simpul. kalau berarah tinggal disesuain, klo gaada arahnya tinggal diberi angka 0.
+sparse graph : ketika simpul jauh lebih banyak ketimbang sisinya.
+dense graph : ketika sisi jauh lebih banyak daripada simpulnya.
+
+*jika ada sisi yang berlabel, cara memodelkan kedalam matrix yaitu jadikan simpul ke angka seperti biasa, lalu setiap label pada sisi dijadikan angka juga agar mudah di modelkan ke matrix n x n.
+
+
+Adjacency list : menyimpan graph di array of linked list. Digunakan untuk menyimpan sparse graph (agar tidak memakan banyak memory klo pake matrix biasa).

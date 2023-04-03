@@ -1,0 +1,10 @@
+materi kuliah PPDS
+1. pemrogramman dasar (variable, operator, brancing + looping, function)
+2. Struktur data (Tuples, list, set, dictionaries dan pemanfaatannya)
+3. Pengolahan data numerik (library numpy, operasi2 matriks, vetorisasi, praktek dengan data berukuran kecil sampai sedang)
+4. Dataframe (library pandas, oprasi filtering, agregat, join, praktek dengan data berukuran kecil - sedang)
+5. visualisasi data (library matplotlib, pembuatan grafik - grafik visual (scatter, ploat, line, bar, WordCloud, dll))
+
+code classroom : r3zk2av
+
+beberapa aplikasi : google collab, onlineGDB, anaconda

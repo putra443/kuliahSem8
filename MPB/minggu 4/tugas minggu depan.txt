@@ -1,0 +1,3 @@
+buat perbaikan diagram yang sudah dibuat (tentang bpjs)
+
+pikirkan bagaimana cara memodifikasi diagram hasil final ke bpmn versi esensial dulu saja (bab 3, belum yg advanced).
