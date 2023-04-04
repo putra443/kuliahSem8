@@ -1,13 +1,13 @@
-// package modul;
-
 import java.util.*;
-
 abstract class HashTable<K,V>{
     protected Data[] table;
     protected int capacity;
     protected double c1, c2;
     protected Data tombstone = new Data(null, null);
 
+    private class Key{
+        
+    }
     private class Data{
         K key;
         V value;
@@ -17,6 +17,8 @@ abstract class HashTable<K,V>{
             this.value = value;
         }
     }
+
+    
 
     public HashTable(int capacity, double c1, double c2){
         this.capacity = capacity;
@@ -88,49 +90,20 @@ class ModularHashInteger<V> extends HashTable<Integer,V>{
         return((int)(k0 + this.c1*i + this.c2*i*i))%this.capacity;
     }
 }
-
-public class TesterHash{
+public class DodoTravelling {
     public static void main(String[]args){
         Scanner sc = new Scanner(System.in);
-        int capacity = sc.nextInt();
-        double c1 = sc.nextDouble();
-        double c2 = sc.nextDouble();
-        ModularHashInteger<String>h = new ModularHashInteger(capacity, c1, c2);
-        
-        for(int i=0;i<8;i++){
-            String input = sc.next();
-            if(input.equals("insert")){
-                int key = sc.nextInt();
-                String value = sc.next();
-                boolean hasil = h.insert(key, value);
-                if(hasil==true){
-                    System.out.println("true");
-                }
-                else{
-                    System.out.println("false");
-                }
-            }
-            else if(input.equals("search")){
-                int key = sc.nextInt();
-                if(h.search(key)==null){
-                    System.out.println("null");
-                }
-                else{
-                    System.out.println(h.search(key));
-                }
-            }
-            else if(input.equals("delete")){
-                int key = sc.nextInt();
-                if(h.search(key)!=null){
-                    String value = h.search(key);
-                    System.out.println(value);
-                    h.delete(key);
-                }
-                else{
-                    System.out.println("null");
-                }
-            }
+        int kasus = sc.nextInt();
+        int capacity = 25;
+        double c1 = 3;
+        double c2 = 7;
+        ModularHashInteger<String> h = new ModularHashInteger(capacity, c1, c2);
+        for(int i=0; i<kasus;i++){
+            String input = sc.nextLine();
+            h.insert(i, input);
         }
-
+        for(int i=0; i<capacity;i++){
+            System.out.println(h.search(i));
+        }
     }
 }
