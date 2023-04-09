@@ -1,3 +1,6 @@
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.*;
 abstract class HashTable<K,V>{
     protected Data[] table;
@@ -5,9 +8,6 @@ abstract class HashTable<K,V>{
     protected double c1, c2;
     protected Data tombstone = new Data(null, null);
 
-    private class Key{
-        
-    }
     private class Data{
         K key;
         V value;
@@ -18,7 +18,6 @@ abstract class HashTable<K,V>{
         }
     }
 
-    
 
     public HashTable(int capacity, double c1, double c2){
         this.capacity = capacity;
@@ -99,8 +98,10 @@ public class DodoTravelling {
         double c2 = 7;
         ModularHashInteger<String> h = new ModularHashInteger(capacity, c1, c2);
         for(int i=0; i<kasus;i++){
-            String input = sc.nextLine();
-            h.insert(i, input);
+            String tempat = (sc.next().toUpperCase());
+            String waktu = sc.next();
+            String kegiatan = sc.next().toUpperCase();
+            String tanggal = sc.next();
         }
         for(int i=0; i<capacity;i++){
             System.out.println(h.search(i));
