@@ -1,24 +1,25 @@
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.*;
+
 abstract class HashTable<K,V>{
     protected Data[] table;
     protected int capacity;
     protected double c1, c2;
     protected Data tombstone = new Data(null, null);
 
-    private class Key{
-        
-    }
-    private class Data{
-        K key;
+    public class Data{
+        TravelPlan key;
         V value;
 
-        Data (K key, V value){
+        Data (TravelPlan key, V value){
             this.key = key;
             this.value = value;
         }
     }
 
-    
+
 
     public HashTable(int capacity, double c1, double c2){
         this.capacity = capacity;
@@ -27,22 +28,11 @@ abstract class HashTable<K,V>{
         this.c2 = c2;
     }
 
-    abstract protected int hashFunction(K key);
+    abstract protected int hashFunction(TravelPlan key);
     abstract protected int quadraticProbing(int k0, int i);
 
-    public V search(K key){
-        int k0 = this.hashFunction(key);
-        int idx;
-        for(int i=0; i<this.capacity;i++){
-            idx = this.quadraticProbing(k0, i);
-            if(this.table[idx]!=null && this.table[idx].key.equals(key)){
-                return this.table[idx].value;
-            }
-        }
-        return null;
-    }
     
-    public boolean insert(K key, V value){
+    public boolean insert(TravelPlan key, V value){
         //lengkapi....
         Data d = new Data(key, value);
         
@@ -58,37 +48,48 @@ abstract class HashTable<K,V>{
         return false;
     }
 
-    
-    public V delete(K key){
-        int k0 = this.hashFunction(key);
-        int idx;
-        for(int i=0; i<this.capacity;i++){
-            idx = this.quadraticProbing(k0,i);
-            if(this.table[idx]==null){
-                return null;
-            }
-            else if(this.table[idx].key.equals(key)){
-                V result = this.table[idx].value;
-                this.table[idx] = null;
-                return result;
-            }
+}
+
+class TravelPlan{
+    String waktu;
+    String tempat;
+    String jenisKegiatan;
+
+    TravelPlan(String waktu, String tempat, String jenisKegiatan){
+        this.waktu = waktu;
+        this.tempat = tempat;
+        this.jenisKegiatan = jenisKegiatan;    
+    }
+    public String StringTravelPlan(){
+        String key = this.tempat + "-" + this.waktu + "-" + this.jenisKegiatan;
+        return key;
+    }
+    public boolean equals(TravelPlan tp){
+        if(this.waktu==tp.waktu && this.tempat == tp.tempat && this.jenisKegiatan == tp.jenisKegiatan){
+            return true;
         }
-        return null;
+        else{
+            return false;
+        }
     }
 
 }
 
-class ModularHashInteger<V> extends HashTable<Integer,V>{
-    public ModularHashInteger(int capacity, double c1, double c2){
+class ModularHashTravel<V> extends HashTable<TravelPlan,V>{
+    public ModularHashTravel(int capacity, double c1, double c2){
         super(capacity,c1,c2);
     }
 
-    protected int hashFunction(Integer Key){
-        return Key%this.capacity;
+    protected int hashFunction(TravelPlan Key){
+        String key = Key.StringTravelPlan();
+        int res = key.hashCode();
+        return res;
     }
+
     protected int quadraticProbing(int k0, int i){
         return((int)(k0 + this.c1*i + this.c2*i*i))%this.capacity;
     }
+
 }
 public class DodoTravelling {
     public static void main(String[]args){
@@ -97,13 +98,17 @@ public class DodoTravelling {
         int capacity = 25;
         double c1 = 3;
         double c2 = 7;
-        ModularHashInteger<String> h = new ModularHashInteger(capacity, c1, c2);
+        ModularHashTravel<String> h = new ModularHashTravel(capacity, c1, c2);
         for(int i=0; i<kasus;i++){
-            String input = sc.nextLine();
-            h.insert(i, input);
+            String tempat = (sc.next().toUpperCase());
+            String waktu = sc.next();
+            String kegiatan = sc.next().toUpperCase();
+            String tanggal = sc.next();
+
+            TravelPlan tp = new TravelPlan(tempat, waktu,kegiatan);
+            h.insert(tp,tanggal);
         }
-        for(int i=0; i<capacity;i++){
-            System.out.println(h.search(i));
-        }
+
+        System.out.println(h.toString());
     }
 }

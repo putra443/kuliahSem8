@@ -97,7 +97,7 @@ public class TesterHash{
         double c2 = sc.nextDouble();
         ModularHashInteger<String>h = new ModularHashInteger(capacity, c1, c2);
         
-        for(int i=0;i<8;i++){
+        while(sc.hasNext()){
             String input = sc.next();
             if(input.equals("insert")){
                 int key = sc.nextInt();
