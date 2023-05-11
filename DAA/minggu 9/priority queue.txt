@@ -1,0 +1,25 @@
+Priority Queue
+	struktur data yang support 2 oprasi insert dan remove, dengan melihat key tertentu.
+ada beberapa oprasi pada priority key : 
+	1 mencari element dengan key paling besar.
+	2 menghapus element tertentu.
+	3 mengubah prioritas dari element tertentu.
+	4 menggabungkan 2 buah priority queue dengan mempertahankan prioritasnya
+
+* Priority key digunakan untuk mengatur himpunan element, dimana setiap element memiliki key (key menunjukkan prioritynya).
+
+max priority queue(yang prioritasnya lebih besar pertama) support beberapa oprasi: x adalah key, S adalah queuenya
+	insert(x) -> insert element x kedalam S
+	maximum() -> return elemen dengan x terbesar
+	extract-max() -> mengembalikan dan menghapus element dengan x terbesar
+	increase-key(x,k) -> mengubah key element x menjadi k
+
+min priority -> sama kaya max, cmn yg paling depan prioritasnya terendah.
+
+
+Implementasi : bisa pake array, linked list, heap (buat minggu depan)
+
+	ordered array -> capacity(panjang array), size(jumlah element didalam array=i element paling akhir)
+	unordered array -> size(bukan i dari element paling akhir)
+	
+	

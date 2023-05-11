@@ -1,0 +1,36 @@
+Map menyimpan key-value pairs (k,v), map mengharuskan setiap key harus unik (berbeda)
+
+operasi pada map : (m adalah map)
+	size() ->mengembalikan jumlah data pada map
+	isEmpty()->mengembalikan apakah map kosong/tidak
+	get(K)->jika m mengandung k, kembalikan k,v
+	put(k,v)->jika dalam m tidak ada k yang sama dengan input, maka masukkan k,v return null karena blom ada di map; jika ada k yg sama replace value dari key yang sama dengan value yang 	baru setelah itu kembalikan value yang lama.
+	remove(k)->untuk menghapus, hanya bisa melalui key tidak bisa melalui valuenya, return value yang dihapus, jika tidak ada key yang sama return null.
+	keySet()->return semua key yang ada didalam m.
+	values()->ngambil semua value yang ada didalam m.
+
+null as sentinel.
+	get(k), put(k,v), and remove(k) returns null ketika map m tidak memiliki entry yang sama dengan k. special value tersebut bisa disebut sentinel. namun kelemahannya tdak bisa memasukkan 	data dengan key k dan value null.
+
+
+Cara representasinya:
+	1. linked list -> oprasi get, put, remove kompleksitasnya O(n) time.
+	2. hash table -> get, put, remove kompleksitasnya O(1). tetapi worst casenya adalah O(n).
+
+Java hash table implementation.
+	java.util.hashMap -> map yang dalemnya pake hash table, mengimplemen interface map.
+
+Ordered map
+	terkadang dibutuhkan untuk melihat map dan KETERURUTAN didalamnya. jadi ingin disimpan hubungan antar key, jadi ada method tambahan.
+	method tambahan:
+		firstEntry(k) -> key paling kecil
+		lastEntry(k) -> key paling besar
+		ceilingEntry(k) -> jika key ada 5,7,9 maka return key dimana key>=k ( jika k =7 hasilnya 7)
+		floorEntry(k) -> jika key ada 5,7,9 maka retrun key dimana key <=k (jika k=6 hasilnya 5)
+		higerEntry(k) -> sama kaya ceiling cmn gapake samadengan
+		lowerEntry(k) -> sama kaya floor cmn gapake samadengan
+	pake ordered array list -> masalahnya pas insert delete harus geser
+	pake binary search tree -> semakin tinggi pohonnya waktunya semakin lama buat nyari, insert, delete (O(h))
+
+Java ordered map implementation
+	pake java.util.TreeMap
