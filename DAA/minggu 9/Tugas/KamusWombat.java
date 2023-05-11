@@ -1,4 +1,4 @@
-package Tugas;
+// package Tugas;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,16 +9,16 @@ public class KamusWombat {
         Scanner sc = new Scanner(System.in);
         Map<String, String> kamus = new HashMap<String,String>();
     
-        String baris_input = sc.nextLine();
+        String bahasa_dodo = sc.next();
+        String bahasa_wombat = sc.next();
 
-        while(!baris_input.isEmpty()){
-            String[] kata = baris_input.split(" ");
+        while(!bahasa_dodo.isEmpty()){
+            kamus.put(bahasa_wombat, bahasa_dodo);
 
-            kamus.put(kata[1], kata[0]);
-
-            baris_input = sc.nextLine();
+            bahasa_dodo = sc.next();
+            bahasa_wombat = sc.next();
         }
-
+        // sc.nextLine();
         while(sc.hasNext()){
             String search = sc.next();
             if(!kamus.containsKey(search)){
