@@ -1,4 +1,4 @@
-package Tugas;
+// package Tugas;
 import java.util.*;
 public class kamusGPT {
     public static void main(String[] args) {
