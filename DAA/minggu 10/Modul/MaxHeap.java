@@ -1,6 +1,5 @@
 import java.util.*;
 
-import javax.swing.text.DefaultEditorKit.InsertBreakAction;
 public class MaxHeap{
     private int maxHeap[];
     private int heapSize;
@@ -22,18 +21,24 @@ public class MaxHeap{
     }
 
     public String toString(){
-        return maxHeap.toString();
+        int i =0;
+        String res = "";
+        while(i<this.heapSize){
+            res += this.maxHeap[i]+ " ";
+            i++;
+        }
+        return res;
     }
     private int getLeft(int i){
-        return i<<1;
+        return 2 * i;
     }
 
     private int getRight(int i){
-        return (i<<1) | 1;
+        return (2 * i)+1;
     }
 
     private int getParent(int i){
-        return i>>1;
+        return i/2;
     }
 
     public void maxHeapify(int i){
@@ -41,16 +46,14 @@ public class MaxHeap{
         int right = this.getRight(i);
         int largest = i;
 
-        if(left<= this.heapSize && left > this.maxHeap[largest]){
+        if(left<= this.heapSize && this.maxHeap[left] > this.maxHeap[largest]){
             largest = left;
         }
-        if(right <= this.heapSize && right > this.maxHeap[largest]){
+        if(right <= this.heapSize && this.maxHeap[right] > this.maxHeap[largest]){
             largest = right;
         }
-        if(largest!=this.maxHeap[i]){
-            int counter = this.maxHeap[i];
-            this.maxHeap[i] = largest;
-            largest = counter;
+        if(largest!=i){
+            swap(i, largest);
             maxHeapify(largest);
         }
     }
@@ -62,9 +65,13 @@ public class MaxHeap{
     }
 
     public void insertKey(int key){
-        this.heapSize = heapSize + 1;
-        this.maxHeap[this.heapSize] = -Integer.MAX_VALUE;
-        increaseKey(this.heapSize, key);
+        this.heapSize+=1;
+        this.maxHeap[this.heapSize] = key;
+        int curr = this.heapSize;
+        while(curr > 0 && this.maxHeap[curr] > this.maxHeap[this.getParent(curr)]){
+            swap(curr, this.getParent(curr));
+            curr = this.getParent(curr);
+        }
     }
 
     public boolean increaseKey(int i, int key){
@@ -74,18 +81,17 @@ public class MaxHeap{
         else{
             this.maxHeap[i] = key;
             while(i > 1 && this.maxHeap[this.getParent(i)]<this.maxHeap[i]){
-                int counter = this.maxHeap[this.getParent(i)];
-                this.maxHeap[this.getParent(i)]= this.maxHeap[i];
-                this.maxHeap[i] = counter;
+                swap(i, this.getParent(i));
+                i = this.getParent(i);
             }
             return true;
         }
     }
 
     public int extractMax(){
-        int max = this.maxHeap[1];
+        int max = this.maxHeap[0];
         this.maxHeap[1] = this.maxHeap[this.heapSize];
-        this.heapSize = heapSize-1;
+        this.heapSize = this.heapSize-1;
         maxHeapify(1);
         return max;
     }
@@ -96,12 +102,19 @@ public class MaxHeap{
 
     public void heapSort(){
         buildMaxHeap();
-        for(int i = this.length; i>=1 ; i--){
-            int counter = this.maxHeap[1];
-            this.maxHeap[1] = this.maxHeap[i];
-            this.maxHeap[i] = counter;
+        int panjangUtama = this.heapSize;
+        for(int i = this.length; i>=2 ; i--){
+            swap(1, i);
+            this.heapSize = this.heapSize-1;
             maxHeapify(1);
         }
+        this.heapSize = panjangUtama;
+    }
+
+    private void swap(int i, int j) {
+        int temp = this.maxHeap[i];
+        this.maxHeap[i] = this.maxHeap[j];
+        this.maxHeap[j] = temp;
     }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -121,9 +134,12 @@ public class MaxHeap{
                 }
             }
             if(input.equals("end")){
+                maxHeap.heapSort();
                 System.out.println(maxHeap.toString());
+                break;
             }
         }
+
     }
 }
 
