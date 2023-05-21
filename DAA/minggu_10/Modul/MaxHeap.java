@@ -1,3 +1,4 @@
+package DAA.minggu_10.Modul;
 import java.util.*;
 
 public class MaxHeap{
@@ -59,8 +60,8 @@ public class MaxHeap{
     }
 
     public void buildMaxHeap(){
-        for(int i = this.heapSize/2;i>=1;i--){
-            maxHeapify(i);
+        for(int i = this.heapSize/2; i>=1; i--){
+            maxHeapify(i); 
         }
     }
 
@@ -92,7 +93,7 @@ public class MaxHeap{
         int max = this.maxHeap[0];
         this.maxHeap[1] = this.maxHeap[this.heapSize];
         this.heapSize = this.heapSize-1;
-        maxHeapify(1);
+        maxHeapify(0);
         return max;
     }
 
@@ -103,7 +104,7 @@ public class MaxHeap{
     public void heapSort(){
         buildMaxHeap();
         int panjangUtama = this.heapSize;
-        for(int i = this.length; i>=2 ; i--){
+        for(int i = this.length; i>=1 ; i--){
             swap(1, i);
             this.heapSize = this.heapSize-1;
             maxHeapify(1);
