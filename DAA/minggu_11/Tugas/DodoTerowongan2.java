@@ -1,4 +1,4 @@
-package DAA.minggu_11.Tugas;
+// package DAA.minggu_11.Tugas;
 
 import java.util.*;
 
@@ -142,7 +142,7 @@ public class DodoTerowongan2 {
         }
 
         boolean[] visited = new boolean[n + 1];
-        MinPrioQueue pq = new MinPrioQueue(n);
+        MinPrioQueue2 pq = new MinPrioQueue2(n);
         pq.insert(1, 0);
 
         int totalEnergy = 0;
@@ -170,15 +170,19 @@ public class DodoTerowongan2 {
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
         int k = scanner.nextInt();
+        int minus_pertama = 0;
         int[][] tunnels = new int[k][3];
         for (int i = 0; i < k; i++) {
             tunnels[i][0] = scanner.nextInt();
             tunnels[i][1] = scanner.nextInt();
             tunnels[i][2] = scanner.nextInt();
+            if(i==0){
+                minus_pertama=tunnels[i][2];
+            }
         }
         scanner.close();
 
         int minimumEnergy = findMinimumEnergy(n, k, tunnels);
-        System.out.println(minimumEnergy);
+        System.out.println(minimumEnergy-minus_pertama);
     }
 }
