@@ -33,15 +33,15 @@ public class DodoTokoBuku {
         return res;
     }
     private int getLeft(int i){
-        return 2 * i;
+        return i<<1;
     }
 
     private int getRight(int i){
-        return (2 * i)+1;
+        return (i<<1) | 1;
     }
 
     private int getParent(int i){
-        return i/2;
+        return i>>1;
     }
 
     public void maxHeapify(int i){
@@ -68,13 +68,9 @@ public class DodoTokoBuku {
     }
 
     public void insertKey(int key){
-        this.heapSize+=1;
-        this.maxHeap[this.heapSize] = key;
-        int curr = this.heapSize;
-        while(curr > 0 && this.maxHeap[curr] > this.maxHeap[this.getParent(curr)]){
-            swap(curr, this.getParent(curr));
-            curr = this.getParent(curr);
-        }
+        this.heapSize +=1;
+        this.maxHeap[this.heapSize] = -Integer.MAX_VALUE;
+        increaseKey(this.heapSize, key);
     }
 
     public boolean increaseKey(int i, int key){
@@ -83,7 +79,7 @@ public class DodoTokoBuku {
         }
         else{
             this.maxHeap[i] = key;
-            while(i > 1 && this.maxHeap[this.getParent(i)]<this.maxHeap[i]){
+            while(i > 0 && this.maxHeap[this.getParent(i)]<this.maxHeap[i]){
                 swap(i, this.getParent(i));
                 i = this.getParent(i);
             }
