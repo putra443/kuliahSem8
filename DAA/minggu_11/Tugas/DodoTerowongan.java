@@ -1,48 +1,43 @@
-package DAA.minggu_11.Tugas;
+// package DAA.minggu_11.Tugas;
 import java.util.*;
 public class DodoTerowongan {
+    
+    public static int minimumWeight(int[][] graph, int jumlahRumah, int jumlahTerowongan){
+        int totalWeight=0;
+        MinPrioQueue pq = new MinPrioQueue(jumlahRumah);
+        pq.insert(1,0);
+        while(pq.size>0){
+            int[] hasilExtract = pq.extractMin();
+            int idExtract = hasilExtract[0];
+            int keyExtract = hasilExtract[1];
+
+            for(int i = 0; i<graph.length)
+        }
+        return totalWeight;
+    }
+
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int jumlahRumah = sc.nextInt();
         int jumlahTerowongan = sc.nextInt();
-        boolean[] isVisited = new boolean[jumlahRumah+1];
-        MinPrioQueue pq = new MinPrioQueue((jumlahTerowongan*2));
-        int total = 0;
-        for(int i=0; i<jumlahTerowongan;i++){
-            int a = sc.nextInt();
-            int b = sc.nextInt();
-            int tenaga = sc.nextInt();
-            pq.insert(a, tenaga);
-            pq.insert(b, tenaga);
-            // pq.print();
+        int[][] graph  = new int[jumlahRumah][jumlahRumah];
+        for(int i=0; i<jumlahTerowongan; i++){
+            int rumahA = sc.nextInt()-1;
+            int rumahB = sc.nextInt()-1;
+            int bobot = sc.nextInt();
+            graph[rumahA][rumahB] = bobot;
+            graph[rumahB][rumahA] = bobot;
         }
-        int keyPertama = 0;
-        for(int i=0; i<pq.size;i++){
-            int[] hasilExtract = pq.extractMin();
-            int id = hasilExtract[0];
-            int key = hasilExtract[1];
-
-            if(i==0){
-                keyPertama=id;
+        System.out.println();
+        for(int i =0; i<jumlahRumah;i++){
+            for(int j = 0; j<jumlahRumah;j++){
+                System.out.print(graph[i][j] + " ");
             }
-            if(isVisited[id]==false){
-                isVisited[id] = true;
-                total+=key;
-            }
-            if(isVisited[id]==true){
-                int[] hasilExtract2 = pq.extractMin();
-                int id2 = hasilExtract2[0];
-                int key2 = hasilExtract2[1];
-                if(isVisited[id2]==false){
-                    total+=key2;
-                    isVisited[id2] = true;
-                }
-                // else{
-                //     pq.extractMin();
-                // }
-            }
+            System.out.println();
         }
-        System.out.println((total-keyPertama));
+        System.out.println();
+        minimumWeight(graph,jumlahTerowongan,jumlahRumah);
     }   
 }
 class MinPrioQueue {
@@ -122,22 +117,22 @@ class MinPrioQueue {
     }
 
     public boolean insert(int id, int key){
-        // if(this.size == this.length){       //heap penuh
-        //     return false;
-        // }
-        // else if(id<=0 || id>this.length){   //id diluar range
-        //     return false;
-        // }
-        // else if(this.position[id]!=0){      //id duplikat
-        //     return false;
-        // }
-        // else{
+        if(this.size == this.length){       //heap penuh
+            return false;
+        }
+        else if(id<=0 || id>this.length){   //id diluar range
+            return false;
+        }
+        else if(this.position[id]!=0){      //id duplikat
+            return false;
+        }
+        else{
             this.size+=1;
             this.heap[this.size] = new Data(id, key);
             position[id] = size;
             decreaseKey(this.size, key);
             return true;
-        // }
+        }
     }
 
     public int[] extractMin(){

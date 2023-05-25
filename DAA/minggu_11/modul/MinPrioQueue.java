@@ -87,7 +87,7 @@ public class MinPrioQueue {
         }
         else{
             this.size+=1;
-            this.heap[this.size] = new Data(id, key);
+            this.heap[this.size] = new Data(id, Integer.MAX_VALUE);
             position[id] = size;
             decreaseKey(this.size, key);
             return true;
@@ -122,7 +122,6 @@ public class MinPrioQueue {
             System.out.print(this.position[i]+ " ");
         }
         System.out.println("");
-        System.out.println(this.length);
 
     }
     
