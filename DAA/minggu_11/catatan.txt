@@ -1,6 +1,7 @@
-PRIM MMINIMUM SPANNING TREE
+Number theoretic algorithms
 
--. digunaman untuk memecahkan msalah minimum spanning tree
--. pada setiap step, akan ada 1 edge dengan nilai minimum ditambahkan ke pohon A.(nama lainnya light edge)
--. 
-
+1. d devides a -> d kelipatan a, d adalah pembagi a, dan a atau bilangan lain memiliki trivial devisor yaitu 1 dan bilangan itu sendiri.
+2. quotient adalah q = a/n dibulatkan kebawah
+3. mod -> a mod n =  a- (n * (a/n bulatkan kebawah)) -> untuk menemukan remainder dari division / sisa hasil bagi
+4. a dan b dikatakan kongruen / equivalent jika a dan b memenuhi rumus (a mod n) = (b mod n) maka a = b (mod n)
+5. GCD (greatest common devisor) - > gcd(a,b) = gcd(b,a mod b)
