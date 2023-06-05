@@ -1,0 +1,6 @@
+PRIM MMINIMUM SPANNING TREE
+
+-. digunaman untuk memecahkan msalah minimum spanning tree
+-. pada setiap step, akan ada 1 edge dengan nilai minimum ditambahkan ke pohon A.(nama lainnya light edge)
+-. 
+

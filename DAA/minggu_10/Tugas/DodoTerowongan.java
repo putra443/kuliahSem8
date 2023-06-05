@@ -6,12 +6,18 @@ public class DodoTerowongan {
         int totalWeight=0;
         MinPrioQueue pq = new MinPrioQueue(jumlahRumah);
         pq.insert(1,0);
+        boolean [] isVisited = new boolean[jumlahRumah];
+        isVisited[0] = true;
         while(pq.size>0){
             int[] hasilExtract = pq.extractMin();
             int idExtract = hasilExtract[0];
             int keyExtract = hasilExtract[1];
 
-            for(int i = 0; i<graph.length)
+            for(int i = 0; i<jumlahRumah; i++){
+                for(int j = 0; j<jumlahRumah;j++){
+                    if(isVisited)
+                }
+            }
         }
         return totalWeight;
     }

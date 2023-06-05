@@ -1,0 +1,46 @@
+revisi privdat
+1. admin / ketua
+	• add user (benerin tampilan)
+	• remove user
+	• halaman lihat isi, rab, proposal
+	• pada halaman proker perlu ditambahakan proker tsb dimiliki oleh divisi siapa'
+	• bisa menambahkan komen jika status proker perlu direvisi untuk sekretaris
+	• hanya ketua yang dapat membuat status proker approved / siap dialnjutkan ke kaprodi
+2. sekben 
+	•Merubah status proposal dan RAB menjadi approved atau revisi untuk kordiv dan staff
+	• memberikan komen untuk kordiv dan staff
+	• hanya sekben yang dapat merubah status proker menjadi "dilanjutkan ke ketua"
+`
+3. Kordiv
+	• Mengajukan proker / edit nama proker
+	• Melihat status proposal dan RAB dan proker
+4. staff
+	• Membuat RAB
+	• Membuat proposal
+	• Melihat status proposal dan RAB
+
+//////////////////////////////////////////////////////////////////////////////
+Masalah tabel : 
+
+1. Proker attributenya:
+	• id Proker
+	• nama Proker
+	• isiProker (Penjelasan singkat terkait proker)
+	• statusProkerKetua (pending sekben, revisi, dilanjutkan ke kaprodi)
+	• statusProkerSekben (pending, revisi, dilanjutkan ke ketua)
+	• idDivisi (role 3-8)
+	• isikomenKetua
+	• isiKomenSekben
+2. proposal attributenya:
+	• idProposal
+	• namaProposal
+	• isiProposal (File)
+	• statuspProposalKetua (pending sekben, revisi, dilanjutkan ke kaprodi)
+	• statusProposalSekben (pending, revisi, dilanjutkan ke ketua)
+	• idProker (FK)
+3. RAB attributenya:
+	• idRAB
+	• isiRAB (File)
+	• statusRABKetua (pending sekben, revisi, dilanjutkan ke kaprodi)
+	• statusRABSekben (pending, revisi, dilanjutkan ke ketua)
+	• idRAB (FK)
