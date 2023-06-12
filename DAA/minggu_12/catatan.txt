@@ -1,0 +1,9 @@
+Greedy Algorithm -> buat solusi satu2, karakteristiknya setiap bikin 1 solusi, selalu ambil
+hasil yang terbaik saat itu, lalu ketika sudah ambil tidak boleh ambil solusi lain untuk 
+perbaiki.
+
+contoh2nya ada kruskal, prim, dan huffman.
+
+contoh kasus : 
+1. knapsack problem -> pakai backtracking
+2. fractional knapsack -> bisa pake greedy algorithm
