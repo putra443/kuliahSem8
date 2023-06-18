@@ -1,68 +1,84 @@
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class DodoSweeperGPT {
+    static int[][] grid;
+    static int N, W, K;
+    static int solutions = 0;
 
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
-        int N = input.nextInt();
-        int W = input.nextInt();
-        int K = input.nextInt();
+        N = scanner.nextInt();
+        W = scanner.nextInt();
+        K = scanner.nextInt();
 
-        int[][] grid = new int[N][N];
+        grid = new int[N][N];
+
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
-                grid[i][j] = input.nextInt();
+                grid[i][j] = scanner.nextInt();
             }
         }
 
-        List<int[][]> solutions = new ArrayList<>();
-        backtrack(0, 0, N, W, K, grid, new int[N][N], solutions);
+        findPossiblePositions(0, 0, W, K);
 
-        int numSolutions = solutions.size();
-        System.out.println(numSolutions);
+        System.out.println(solutions);
+
+        scanner.close();
     }
 
-    private static void backtrack(int row, int col, int N, int remainingWombats, int remainingKapibaras,
-                                  int[][] grid, int[][] positions, List<int[][]> solutions) {
-        if (remainingWombats == 0 && remainingKapibaras == 0) {
-            solutions.add(positions);
+    public static void findPossiblePositions(int row, int col, int remainingWombat, int remainingKapibara) {
+        if (remainingWombat < 0 || remainingKapibara < 0) {
             return;
         }
 
-        if (col == N) {
-            backtrack(row + 1, 0, N, remainingWombats, remainingKapibaras, grid, positions, solutions);
+        if (row >= N) {
+            if (remainingWombat == 0 && remainingKapibara == 0) {
+                solutions++;
+            }
             return;
         }
 
-        if (row == N) {
+        if (col >= N) {
+            findPossiblePositions(row + 1, 0, remainingWombat, remainingKapibara);
             return;
         }
 
         if (grid[row][col] == 0) {
-            backtrack(row, col + 1, N, remainingWombats, remainingKapibaras, grid, positions, solutions);
-            return;
+            int adjacentValue = getAdjacentValue(row, col);
+            if (adjacentValue == 1) {
+                findPossiblePositions(row, col + 1, remainingWombat - 1, remainingKapibara);
+            } else if (adjacentValue == 2) {
+                findPossiblePositions(row, col + 1, remainingWombat, remainingKapibara - 1);
+            } else {
+                findPossiblePositions(row, col + 1, remainingWombat - 1, remainingKapibara);
+                findPossiblePositions(row, col + 1, remainingWombat, remainingKapibara - 1);
+            }
+        } else {
+            findPossiblePositions(row, col + 1, remainingWombat, remainingKapibara);
+            System.out.println("jmlWombat = " + remainingWombat + " , jmlKapibara = " + remainingKapibara);
+        }
+    }
+
+    public static int getAdjacentValue(int row, int col) {
+        int value = 0;
+
+        if (row - 1 >= 0 && grid[row - 1][col] > 0) {
+            value += grid[row - 1][col];
         }
 
-        if (positions[row][col] != 0) {
-            backtrack(row, col + 1, N, remainingWombats, remainingKapibaras, grid, positions, solutions);
-            return;
+        if (row + 1 < N && grid[row + 1][col] > 0) {
+            value += grid[row + 1][col];
         }
 
-        // Place a wombat
-        if (remainingWombats > 0) {
-            positions[row][col] = 1;
-            backtrack(row, col + 1, N, remainingWombats - 1, remainingKapibaras, grid, positions, solutions);
-            positions[row][col] = 0;
+        if (col - 1 >= 0 && grid[row][col - 1] > 0) {
+            value += grid[row][col - 1];
         }
 
-        // Place a kapibara
-        if (remainingKapibaras > 0) {
-            positions[row][col] = 2;
-            backtrack(row, col + 1, N, remainingWombats, remainingKapibaras - 1, grid, positions, solutions);
-            positions[row][col] = 0;
+        if (col + 1 < N && grid[row][col + 1] > 0) {
+            value += grid[row][col + 1];
         }
+
+        return value;
     }
 }

@@ -1,49 +1,50 @@
 import java.util.*;
 public class DodoSweeper{
     static int[][] map;
-    static int length;
+    static int n,w,k;
+    static int solusi = 0;
     
-    static void generateBS(int len){
-        if(len==-1){
-            for(int i=0; i<length;i++){
-                for(int j=0; j<length;j++){
-                    System.out.print(map[i][j] + " , ");
-                }
-                System.out.println();
-            }
+    static void generateBS(int baris, int kolom, int remainingW, int remainingK){
+        if(baris==-1 && kolom==-1){
+            solusi++;
         }
         else{
-            map[len][len]=0;
-            if(map[len][len]==0){
-                generateBS(len-1);
-            }
-            
-            map[len][len]=-1;
-
-            map[len][len]=1;
-            if(map[len][len]==1){
-                generateBS(len-1);
+           
+            map[baris-1][kolom] = 0;
+            if(map[baris+1][kolom]==0){
+                generateBS(baris, kolom, remainingW, remainingK);
             }
 
-            map[len][len]=-1;
+            map[baris-1][kolom] = -1;
 
-
-            map[len][len]=2;
-            if(map[len][len]==2){
-                generateBS(len-1);
+            map[baris-1][kolom] = 1;
+            if(map[baris+1][kolom]==1){
+                generateBS(baris, kolom, remainingW-1, remainingK);
             }
 
-            map[len][len]=-1;
+            map[baris-1][kolom] = -1;
+
+            map[baris-1][kolom] = 2;
+            if(map[baris-1][kolom]==2){
+                generateBS(baris, kolom, remainingW, remainingK-1);
+            }
+            map[baris-1][kolom] = -1;
 
         }
     }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        length = sc.nextInt();
-        map = new int[length][length];
-        for (int[] row: map){
-            Arrays.fill(row, -1);
+        int n = sc.nextInt();
+        int w = sc.nextInt();
+        int k = sc.nextInt();
+        map = new int[n][n];
+        for(int i=0; i<n;i++){
+            for(int j=0;j<n;j++){
+                map[i][j] = sc.nextInt();
+            }
         }
-        generateBS(length-1);
+
+        
+        generateBS(n-1,n-1, w, k);
     }
 }
