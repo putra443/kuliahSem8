@@ -21,12 +21,14 @@ public class TopScore{
     public static int lds(int[] arr) {
         int n = arr.length;
         int[] arrLds = new int[n];
+        int[] prev = new int[n];
         Arrays.fill(arrLds, 1);
-
+        Arrays.fill(prev,0);
         for (int i = 1; i < n; i++) {
             for (int j = 0; j < i; j++) {
                 if (arr[j] > arr[i] && arrLds[j] + 1 > arrLds[i]) {
                     arrLds[i] = arrLds[j] + 1;
+                    prev[i]=arr[j];
                 }
             }
         }
@@ -37,7 +39,7 @@ public class TopScore{
                 longestLength = arrLds[i];
             }
         }
-        System.out.println(Arrays.toString(arrLds));
+        System.out.println(Arrays.toString(prev));
         return longestLength;
     }
 
