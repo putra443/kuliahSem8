@@ -1,0 +1,85 @@
+{
+  "components": [
+    {
+      "label": "Nama Client",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_17lfvut",
+        "columns": null
+      },
+      "id": "Field_1xwucpc",
+      "key": "nama"
+    },
+    {
+      "label": "Alamat Client",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0zio635",
+        "columns": null
+      },
+      "id": "Field_05qmlpp",
+      "key": "alamat"
+    },
+    {
+      "label": "Email Client",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1i1h6ig",
+        "columns": null
+      },
+      "id": "Field_19zxnhq",
+      "key": "email"
+    },
+    {
+      "label": "No Telpon Client",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1rbbg3l",
+        "columns": null
+      },
+      "id": "Field_1ni3te2",
+      "key": "noTelp"
+    },
+    {
+      "label": "Tipe Orderan",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1k9xfn0",
+        "columns": null
+      },
+      "id": "Field_0jzatj3",
+      "key": "field_1gsykfp"
+    },
+    {
+      "label": "Terdapat Jaringan Biznet Disekitar?",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1xl2xrr",
+        "columns": null
+      },
+      "id": "Field_1vrfet8",
+      "key": "infoJaringan"
+    },
+    {
+      "text": "# Text",
+      "type": "text",
+      "layout": {
+        "row": "Row_0tzk6so",
+        "columns": null
+      },
+      "id": "Field_1j9be00",
+      "properties": {
+        "key1": "value"
+      }
+    }
+  ],
+  "type": "default",
+  "id": "Form_1oxchm0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.11.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.19.0",
+  "schemaVersion": 8
+}
