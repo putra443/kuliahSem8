@@ -1,55 +1,50 @@
 import java.util.*;
 public class RailwayStation{
 
-    public static void sorting(int[] arr1, int[] arr2, int n){
-        for(int i=0; i<n-1; i++){
-            int minIndex = i;
-            for(int j=i+1; j<n;j++){
-                if(arr1[j]< arr1[minIndex]){
-                    minIndex = j;
-                }
-            }
-            int temp = arr1[i];
-            int temp2 = arr2[i];
-            arr1[i] = arr1[minIndex];
-            arr2[i] = arr2[minIndex];
-            arr1[minIndex] = temp;
-            arr2[minIndex] = temp2;
-        }
-    }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int counterMaxTumpuk = 0;
         int n = sc.nextInt();
-        int[] waktuDatang = new int[n];
-        int[] waktuPergi = new int [n];
+        int[] waktuMasuk = new int[n];
+        int[] waktuKeluar = new int[n];
 
-        for(int i=0; i<n;i++){
-            int jamDatang = sc.nextInt()*60;
-            int menitDatang = sc.nextInt();
-            int insertWaktuDatang = jamDatang+menitDatang;
-            waktuDatang[i]= insertWaktuDatang;
-
-            int jamPergi = sc.nextInt()*60;
-            int menitPergi = sc.nextInt();
-            int insertWaktuPergi = jamPergi+menitPergi;
-            waktuPergi[i] = insertWaktuPergi;
-
-
+        for(int i=0; i<n; i++){
+            int masuk = Integer.valueOf(sc.next()+sc.next());
+            int keluar = Integer.valueOf(sc.next()+sc.next());
+            waktuMasuk[i] = masuk;
+            waktuKeluar[i] = keluar;
         }
-
-        sorting(waktuDatang, waktuPergi, n);
-
-        // System.out.println(Arrays.toString(waktuDatang));
-        // System.out.println(Arrays.toString(waktuPergi));
-        
-        for (int i=0; i<n-1; i++){
-            if(waktuPergi[i]>=waktuDatang[i+1]){
-                counterMaxTumpuk++;
+        // System.out.println(Arrays.toString(waktuMasuk));
+        // System.out.println(Arrays.toString(waktuKeluar));
+        for(int i=0; i<n; i++){
+            for(int j=0; j<n-1;j++){
+                if(waktuMasuk[j]>waktuMasuk[j+1]){
+                    int temp = waktuMasuk[j];
+                    int temp2 = waktuKeluar[j];
+                    waktuMasuk[j] = waktuMasuk[j+1];
+                    waktuKeluar[j] = waktuKeluar[j+1];
+                    waktuMasuk[j+1] = temp;
+                    waktuKeluar[j+1] = temp2;
+                }
             }
         }
-
-        System.out.println(counterMaxTumpuk);
+        int counterMax = 1;
+        for(int i=0; i<n-1; i++){
+            int temp = waktuKeluar[i];
+            int temp2 = waktuMasuk[i];
+            int counterTemp= 1;
+            for(int j=i+1; j<n;j++){
+                if(temp>waktuMasuk[j]&& temp2<waktuKeluar[j]){
+                    // System.out.println("keluar I = " + temp + " , masuk J = " + waktuMasuk[j]);
+                    counterTemp++;
+                }
+            }
+            if(counterTemp>counterMax){
+                counterMax = counterTemp;
+            }
+        }
+        // System.out.println(Arrays.toString(waktuMasuk));
+        // System.out.println(Arrays.toString(waktuKeluar));
+        System.out.println(counterMax);
 
     }
         
