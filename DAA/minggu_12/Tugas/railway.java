@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class railwayGPT {
+public class railway {
     public static int findMaxOverlap(int[] arrivals, int[] departures) {
         int n = arrivals.length;
 
@@ -12,12 +12,12 @@ public class railwayGPT {
         int currentOverlap = 0;
         int arrivalIndex = 0;
         int departureIndex = 0;
-        System.out.println(Arrays.toString(arrivals));
-        System.out.println(Arrays.toString(departures));
+        // System.out.println(Arrays.toString(arrivals));
+        // System.out.println(Arrays.toString(departures));
 
         // Melakukan pencarian jumlah maksimal overlap
         while (arrivalIndex < n && departureIndex < n) {
-            if (arrivals[arrivalIndex] < departures[departureIndex]) {
+            if (arrivals[arrivalIndex] <= departures[departureIndex]) {
                 // Interval kedatangan
                 currentOverlap++; // Meningkatkan jumlah overlap
                 maxOverlap = Math.max(maxOverlap, currentOverlap);

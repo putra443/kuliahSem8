@@ -19,11 +19,18 @@ public class RailwayStation{
             for(int j=0; j<n-1;j++){
                 if(waktuMasuk[j]>waktuMasuk[j+1]){
                     int temp = waktuMasuk[j];
-                    int temp2 = waktuKeluar[j];
                     waktuMasuk[j] = waktuMasuk[j+1];
-                    waktuKeluar[j] = waktuKeluar[j+1];
                     waktuMasuk[j+1] = temp;
-                    waktuKeluar[j+1] = temp2;
+                }
+            }
+        }
+
+        for(int i=0; i<n; i++){
+            for(int j=0; j<n-1;j++){
+                if(waktuKeluar[j]>waktuKeluar[j+1]){
+                    int temp = waktuKeluar[j];
+                    waktuKeluar[j] = waktuKeluar[j+1];
+                    waktuKeluar[j+1] = temp;
                 }
             }
         }

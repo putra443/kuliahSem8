@@ -1,0 +1,46 @@
+{
+  "components": [
+    {
+      "label": "nama",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0q45opa",
+        "columns": null
+      },
+      "id": "Field_09wlp3n",
+      "key": "nama"
+    },
+    {
+      "label": "Alamat",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_02ihl30",
+        "columns": null
+      },
+      "id": "Field_1xesipi",
+      "key": "alamat"
+    },
+    {
+      "label": "Image view",
+      "type": "image",
+      "layout": {
+        "row": "Row_1rl2g42",
+        "columns": null
+      },
+      "id": "Field_0g0b222",
+      "properties": {
+        "key1": "value"
+      },
+      "source": "http://placehold.it/180"
+    }
+  ],
+  "type": "default",
+  "id": "Form_183awh6",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.12.1"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.19.0",
+  "schemaVersion": 9
+}

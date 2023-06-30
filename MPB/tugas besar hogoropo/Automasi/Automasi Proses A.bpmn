@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1viszut" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.11.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.19.0">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1viszut" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.12.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.19.0">
   <bpmn:collaboration id="Collaboration_19guv6q">
     <bpmn:participant id="Participant_1u4tpiw" name="Proses Pemasangan Jaringan Biznet" processRef="Process_05x6e0u" />
   </bpmn:collaboration>
@@ -7,13 +7,13 @@
     <bpmn:extensionElements />
     <bpmn:laneSet id="LaneSet_1d7mq66">
       <bpmn:lane id="Lane_0aapb2o" name="Client">
-        <bpmn:flowNodeRef>Gateway_0rdnz9o</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0nopgy9</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1q7jkhm</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1mvug8d</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_013av7m</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_17zkb3a</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_1wo7ldm</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_0rdnz9o</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_0ki6ai7" name="Admin">
         <bpmn:flowNodeRef>Activity_1dd857k</bpmn:flowNodeRef>
@@ -32,11 +32,6 @@
     <bpmn:dataObjectReference id="DataObjectReference_1trjxin" name="Data Diri Client + Orderan Pemasangan" dataObjectRef="DataObject_02f5cac" />
     <bpmn:dataObject id="DataObject_02f5cac" />
     <bpmn:dataStoreReference id="DataStoreReference_18f4z2l" name="Daftar Orderan Pemasangan" />
-    <bpmn:parallelGateway id="Gateway_0rdnz9o">
-      <bpmn:incoming>Flow_10t8raa</bpmn:incoming>
-      <bpmn:outgoing>Flow_1wvfufd</bpmn:outgoing>
-      <bpmn:outgoing>Flow_0g1aemy</bpmn:outgoing>
-    </bpmn:parallelGateway>
     <bpmn:userTask id="Activity_0nopgy9" name="menentukan pilihan orderan dan pilihan layanan">
       <bpmn:incoming>Flow_00xblsq</bpmn:incoming>
       <bpmn:incoming>Flow_0g1aemy</bpmn:incoming>
@@ -113,24 +108,29 @@
         <bpmn:targetRef>Property_002z3yy</bpmn:targetRef>
       </bpmn:dataInputAssociation>
     </bpmn:userTask>
-    <bpmn:textAnnotation id="TextAnnotation_0055w8a">
-      <bpmn:text>Tidak terdapat tiang utama biznet</bpmn:text>
-    </bpmn:textAnnotation>
-    <bpmn:textAnnotation id="TextAnnotation_0wywvfp">
-      <bpmn:text>Terdapat tiang utama biznet</bpmn:text>
-    </bpmn:textAnnotation>
+    <bpmn:exclusiveGateway id="Gateway_0rdnz9o">
+      <bpmn:incoming>Flow_10t8raa</bpmn:incoming>
+      <bpmn:outgoing>Flow_1wvfufd</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0g1aemy</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
     <bpmn:textAnnotation id="TextAnnotation_0naow62">
       <bpmn:text>Pilihan pertama : client akan dikenakan biaya tambahan untuk penarikan kabel dari tiang yang jauh
 
 Pilihan kedua : client akan dikenakan biaya tambahan untuk mendirikan tiang sendiri di depan rumah sebagai pusat kabel ke rumah client</bpmn:text>
     </bpmn:textAnnotation>
-    <bpmn:association id="Association_0eodb94" sourceRef="Gateway_0rdnz9o" targetRef="TextAnnotation_0055w8a" />
-    <bpmn:association id="Association_1r2zc1k" sourceRef="Gateway_0rdnz9o" targetRef="TextAnnotation_0wywvfp" />
     <bpmn:association id="Association_1kwn2rl" sourceRef="TextAnnotation_0naow62" targetRef="Activity_1mvug8d" />
     <bpmn:textAnnotation id="TextAnnotation_1mzh13w">
       <bpmn:text>Sistem melihat alamat client dan cek apakah ada jaringan biznet pada lokasi client.</bpmn:text>
     </bpmn:textAnnotation>
     <bpmn:association id="Association_0zv1nmc" sourceRef="Activity_1q7jkhm" targetRef="TextAnnotation_1mzh13w" />
+    <bpmn:textAnnotation id="TextAnnotation_0055w8a">
+      <bpmn:text>Tidak terdapat tiang utama biznet</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_0eodb94" sourceRef="Flow_1wvfufd" targetRef="TextAnnotation_0055w8a" />
+    <bpmn:textAnnotation id="TextAnnotation_0wywvfp">
+      <bpmn:text>Terdapat tiang utama biznet</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_1r2zc1k" sourceRef="Flow_0g1aemy" targetRef="TextAnnotation_0wywvfp" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_19guv6q">
@@ -138,40 +138,32 @@ Pilihan kedua : client akan dikenakan biaya tambahan untuk mendirikan tiang send
         <dc:Bounds x="160" y="80" width="1940" height="1120" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_0aapb2o_di" bpmnElement="Lane_0aapb2o" isHorizontal="true">
-        <dc:Bounds x="190" y="80" width="1910" height="260" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_0ki6ai7_di" bpmnElement="Lane_0ki6ai7" isHorizontal="true">
-        <dc:Bounds x="190" y="340" width="1910" height="370" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_0cnpypy_di" bpmnElement="Lane_0cnpypy" isHorizontal="true">
-        <dc:Bounds x="190" y="710" width="1910" height="170" />
+      <bpmndi:BPMNShape id="Lane_02w77rq_di" bpmnElement="Lane_02w77rq" isHorizontal="true">
+        <dc:Bounds x="190" y="1040" width="1910" height="160" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_1tnxk3o_di" bpmnElement="Lane_1tnxk3o" isHorizontal="true">
         <dc:Bounds x="190" y="880" width="1910" height="160" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_02w77rq_di" bpmnElement="Lane_02w77rq" isHorizontal="true">
-        <dc:Bounds x="190" y="1040" width="1910" height="160" />
+      <bpmndi:BPMNShape id="Lane_0cnpypy_di" bpmnElement="Lane_0cnpypy" isHorizontal="true">
+        <dc:Bounds x="190" y="710" width="1910" height="170" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0ki6ai7_di" bpmnElement="Lane_0ki6ai7" isHorizontal="true">
+        <dc:Bounds x="190" y="340" width="1910" height="370" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0aapb2o_di" bpmnElement="Lane_0aapb2o" isHorizontal="true">
+        <dc:Bounds x="190" y="80" width="1910" height="260" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_0055w8a_di" bpmnElement="TextAnnotation_0055w8a">
-        <dc:Bounds x="900" y="190" width="150" height="40" />
+        <dc:Bounds x="900" y="170" width="150" height="40" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_0wywvfp_di" bpmnElement="TextAnnotation_0wywvfp">
-        <dc:Bounds x="900" y="260" width="120" height="40" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_17ui2r2" bpmnElement="TextAnnotation_0naow62">
-        <dc:Bounds x="890" y="380" width="337" height="100" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="TextAnnotation_1mzh13w_di" bpmnElement="TextAnnotation_1mzh13w">
-        <dc:Bounds x="740" y="100" width="200" height="60" />
+        <dc:Bounds x="890" y="250" width="150" height="40" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1nl4xf2_di" bpmnElement="Event_1nl4xf2">
@@ -188,9 +180,6 @@ Pilihan kedua : client akan dikenakan biaya tambahan untuk mendirikan tiang send
         <bpmndi:BPMNLabel>
           <dc:Bounds x="1543" y="602" width="74" height="27" />
         </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_0rdnz9o_di" bpmnElement="Gateway_0rdnz9o">
-        <dc:Bounds x="825" y="215" width="50" height="50" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_14zoun3_di" bpmnElement="Activity_0nopgy9">
         <dc:Bounds x="1220" y="200" width="100" height="80" />
@@ -230,21 +219,24 @@ Pilihan kedua : client akan dikenakan biaya tambahan untuk mendirikan tiang send
       <bpmndi:BPMNShape id="Activity_0vbfi3h_di" bpmnElement="Activity_1q7vxmu">
         <dc:Bounds x="1770" y="750" width="100" height="80" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_17ui2r2" bpmnElement="TextAnnotation_0naow62">
+        <dc:Bounds x="890" y="380" width="337" height="100" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1mzh13w_di" bpmnElement="TextAnnotation_1mzh13w">
+        <dc:Bounds x="740" y="100" width="200" height="60" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_02v2pl5_di" bpmnElement="Gateway_0rdnz9o" isMarkerVisible="true">
+        <dc:Bounds x="825" y="215" width="50" height="50" />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Association_0eodb94_di" bpmnElement="Association_0eodb94">
-        <di:waypoint x="869" y="234" />
-        <di:waypoint x="900" y="223" />
+        <di:waypoint x="960" y="240" />
+        <di:waypoint x="967" y="210" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Association_1r2zc1k_di" bpmnElement="Association_1r2zc1k">
-        <di:waypoint x="869" y="246" />
-        <di:waypoint x="907" y="260" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Association_1kwn2rl_di" bpmnElement="Association_1kwn2rl">
-        <di:waypoint x="1059" y="330" />
-        <di:waypoint x="1090" y="280" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Association_0zv1nmc_di" bpmnElement="Association_0zv1nmc">
-        <di:waypoint x="701" y="200" />
-        <di:waypoint x="743" y="160" />
+        <di:waypoint x="930" y="310" />
+        <di:waypoint x="940" y="290" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0adfyoi_di" bpmnElement="Flow_0adfyoi">
         <di:waypoint x="1870" y="790" />
@@ -294,6 +286,20 @@ Pilihan kedua : client akan dikenakan biaya tambahan untuk mendirikan tiang send
         <di:waypoint x="308" y="240" />
         <di:waypoint x="370" y="240" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1kwn2rl_di" bpmnElement="Association_1kwn2rl">
+        <di:waypoint x="1059" y="330" />
+        <di:waypoint x="1090" y="280" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0zv1nmc_di" bpmnElement="Association_0zv1nmc">
+        <di:waypoint x="701" y="200" />
+        <di:waypoint x="743" y="160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0l3mdkf_di" bpmnElement="DataInputAssociation_0l3mdkf">
+        <di:waypoint x="1140" y="575" />
+        <di:waypoint x="1140" y="600" />
+        <di:waypoint x="1310" y="600" />
+        <di:waypoint x="1310" y="280" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataOutputAssociation_1qxyzu6_di" bpmnElement="DataOutputAssociation_1qxyzu6">
         <di:waypoint x="1281" y="280" />
         <di:waypoint x="1425" y="545" />
@@ -307,26 +313,20 @@ Pilihan kedua : client akan dikenakan biaya tambahan untuk mendirikan tiang send
         <di:waypoint x="1494" y="280" />
         <di:waypoint x="1588" y="545" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataInputAssociation_0rzvljr_di" bpmnElement="DataInputAssociation_0rzvljr">
-        <di:waypoint x="1605" y="570" />
-        <di:waypoint x="1860" y="570" />
-        <di:waypoint x="1860" y="750" />
+      <bpmndi:BPMNEdge id="DataOutputAssociation_198xl8z_di" bpmnElement="DataOutputAssociation_198xl8z">
+        <di:waypoint x="420" y="280" />
+        <di:waypoint x="420" y="555" />
+        <di:waypoint x="1122" y="555" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataInputAssociation_1x3ecs5_di" bpmnElement="DataInputAssociation_1x3ecs5">
         <di:waypoint x="1605" y="570" />
         <di:waypoint x="1690" y="570" />
         <di:waypoint x="1783" y="470" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataInputAssociation_0l3mdkf_di" bpmnElement="DataInputAssociation_0l3mdkf">
-        <di:waypoint x="1140" y="575" />
-        <di:waypoint x="1140" y="600" />
-        <di:waypoint x="1310" y="600" />
-        <di:waypoint x="1310" y="280" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataOutputAssociation_198xl8z_di" bpmnElement="DataOutputAssociation_198xl8z">
-        <di:waypoint x="420" y="280" />
-        <di:waypoint x="420" y="555" />
-        <di:waypoint x="1122" y="555" />
+      <bpmndi:BPMNEdge id="DataInputAssociation_0rzvljr_di" bpmnElement="DataInputAssociation_0rzvljr">
+        <di:waypoint x="1605" y="570" />
+        <di:waypoint x="1860" y="570" />
+        <di:waypoint x="1860" y="750" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

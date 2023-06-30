@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<head>
+
+  <script type="text/javascript">
+    var loadFile = function(event) {
+        var output = document.getElementById('output');
+        output.src = URL.createObjectURL(event.target.files[0]);
+        output.onload = function() {
+          URL.revokeObjectURL(output.src) // free memory
+        }
+      };
+  </script>
+
+  <style>
+    img{
+      max-width:180px;
+    }
+    input[type=file]{
+    padding:10px;
+    background:#2d2d2d;}
+  </style>
+
+
+</head>
+<body>
+    <form role="form" name="form">
+
+      <div class="form-group">
+        <label for="customerId-field">Customer ID</label>
+        <input required
+               cam-variable-name="customerId"
+               cam-variable-type="String"
+               class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="amount-field">Amount</label>
+        <input cam-variable-name="amount"
+               cam-variable-type="Double"
+               class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="upload-file">Upload File</label>
+        <input type="file" accept="image/*" onchange="loadFile(event)">
+        <img id="output"/>
+      </div>
+
+    </form>
+  </body>
